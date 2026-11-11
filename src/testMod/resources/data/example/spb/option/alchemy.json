@@ -1,0 +1,24 @@
+{
+  "name": {
+    "translate": "spb.example.option.alchemy"
+  },
+  "description": {
+    "translate": "spb.example.option.alchemy.description"
+  },
+  "icon": {
+    "id": "minecraft:brewing_stand"
+  },
+  "hard_max": 1,
+  "resource_changes": {
+    "example:points": -2,
+    "example:fate": -1
+  },
+  "outcomes": [
+    {
+      "key": "alchemy",
+      "abilities": [
+        "example:alchemy"
+      ]
+    }
+  ]
+}

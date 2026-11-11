@@ -1,0 +1,14 @@
+{
+  "type": "saturn:modifier",
+  "icon": {
+    "id": "minecraft:diamond"
+  },
+  "modifiers": [
+    {
+      "attribute": "minecraft:movement_speed",
+      "id": "spb_test:gift_speed",
+      "amount": 0.1,
+      "operation": "add_value"
+    }
+  ]
+}

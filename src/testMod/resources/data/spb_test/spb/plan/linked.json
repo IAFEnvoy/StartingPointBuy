@@ -1,0 +1,79 @@
+{
+  "title": {
+    "text": "Test: linked"
+  },
+  "activation": {
+    "on_first_join": false
+  },
+  "resources": [
+    {
+      "resource": "spb_test:budget",
+      "quantum": 1,
+      "commit": "replace",
+      "initial": 9,
+      "name": {
+        "text": "budget"
+      }
+    },
+    {
+      "resource": "spb_test:tokens",
+      "quantum": 1,
+      "commit": "replace",
+      "initial": 3,
+      "name": {
+        "text": "tokens"
+      }
+    },
+    {
+      "resource": "spb_test:power",
+      "quantum": 1,
+      "commit": "replace",
+      "initial": 0,
+      "name": {
+        "text": "power"
+      }
+    }
+  ],
+  "groups": [
+    "spb_test:roles",
+    "spb_test:skills",
+    "spb_test:training"
+  ],
+  "completion_rules": [
+    {
+      "key": "spend_all",
+      "condition": {
+        "type": "spb:compare",
+        "left": "resource_spb_test_budget",
+        "operator": "==",
+        "right": 0
+      },
+      "message": {
+        "text": "spend_all"
+      }
+    }
+  ],
+  "presets": [
+    {
+      "name": {
+        "text": "Sword"
+      },
+      "selections": {
+        "spb_test:sword": 1,
+        "spb_test:shot": 1,
+        "spb_test:train": 4
+      }
+    },
+    {
+      "name": {
+        "text": "Sage"
+      },
+      "selections": {
+        "spb_test:sage": 1,
+        "spb_test:shot": 1,
+        "spb_test:brew": 1,
+        "spb_test:train": 1
+      }
+    }
+  ]
+}

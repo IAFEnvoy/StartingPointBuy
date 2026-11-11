@@ -1,0 +1,14 @@
+{
+  "title": {
+    "translate": "spb.example.group.attributes"
+  },
+  "description": {
+    "translate": "spb.example.group.attributes.description"
+  },
+  "count_mode": "total",
+  "min_count": 0,
+  "max_count": "2 + 2 * selected_example_warrior",
+  "options": [
+    "example:strength"
+  ]
+}

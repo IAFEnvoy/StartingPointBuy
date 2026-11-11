@@ -1,0 +1,59 @@
+{
+  "title": {
+    "text": "Test: readonly"
+  },
+  "activation": {
+    "on_first_join": false
+  },
+  "resources": [
+    {
+      "resource": "spb_test:budget",
+      "quantum": 1,
+      "commit": "replace",
+      "initial": 5,
+      "name": {
+        "text": "budget"
+      }
+    },
+    {
+      "resource": "spb_test:readonly",
+      "quantum": 1,
+      "commit": "discard",
+      "initial": 7,
+      "name": {
+        "text": "readonly"
+      }
+    }
+  ],
+  "groups": [
+    "spb_test:readonly_choices"
+  ],
+  "completion_rules": [
+    {
+      "key": "leave_one",
+      "condition": {
+        "type": "spb:compare",
+        "left": "resource_spb_test_budget",
+        "operator": "==",
+        "right": 1
+      },
+      "message": {
+        "text": "leave_one"
+      }
+    }
+  ],
+  "inputs": {
+    "seed": 3,
+    "roll": "random"
+  },
+  "presets": [
+    {
+      "name": {
+        "text": "Redeem"
+      },
+      "selections": {
+        "spb_test:redeem": 2
+      }
+    }
+  ]
+}

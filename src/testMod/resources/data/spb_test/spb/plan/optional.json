@@ -1,0 +1,23 @@
+{
+  "activation": {
+    "on_first_join": false
+  },
+  "resources": [
+    {
+      "resource": "spb_test:budget",
+      "quantum": 1,
+      "commit": "replace",
+      "initial": 3,
+      "name": {
+        "text": "budget"
+      }
+    }
+  ],
+  "groups": [
+    "spb_test:reward_choices"
+  ],
+  "completion_rules": [],
+  "ui": {
+    "allow_close_before_complete": true
+  }
+}

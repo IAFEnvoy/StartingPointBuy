@@ -1,0 +1,11 @@
+{
+  "name": {
+    "text": "sliver"
+  },
+  "icon": {
+    "id": "minecraft:book"
+  },
+  "resource_changes": {
+    "spb_test:quarters": -0.1
+  }
+}

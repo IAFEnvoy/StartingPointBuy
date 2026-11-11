@@ -1,0 +1,25 @@
+{
+  "title": {
+    "text": "Test: choice_single"
+  },
+  "resources": [
+    {
+      "resource": "spb_test:budget",
+      "name": {"text": "Budget"},
+      "initial": 12
+    }
+  ],
+  "groups": [
+    "spb_test:choice_single"
+  ],
+  "presets": [
+    {
+      "name": {
+        "text": "Three beads"
+      },
+      "selections": {
+        "spb_test:bead": 3
+      }
+    }
+  ]
+}

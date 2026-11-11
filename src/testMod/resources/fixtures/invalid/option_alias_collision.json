@@ -1,0 +1,9 @@
+{
+  "title": {
+    "text": "Alias collision"
+  },
+  "options": [
+    "spb_test:collision-a",
+    "spb_test:collision_a"
+  ]
+}

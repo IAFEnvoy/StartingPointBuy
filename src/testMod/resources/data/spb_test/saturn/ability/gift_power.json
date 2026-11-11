@@ -1,0 +1,14 @@
+{
+  "type": "saturn:modifier",
+  "icon": {
+    "id": "minecraft:diamond"
+  },
+  "modifiers": [
+    {
+      "attribute": "minecraft:attack_damage",
+      "id": "spb_test:gift_power",
+      "amount": 0.1,
+      "operation": "add_value"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "half"
+  },
+  "icon": {
+    "id": "minecraft:book"
+  },
+  "resource_changes": {
+    "spb_test:quarters": -0.5
+  },
+  "hard_max": 3
+}

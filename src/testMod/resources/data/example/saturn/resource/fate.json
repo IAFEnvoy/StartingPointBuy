@@ -1,0 +1,7 @@
+{
+  "default_value": 2,
+  "min": -100000,
+  "max": 100000,
+  "icon": {"id": "minecraft:amethyst_shard"},
+  "particle_color": "#b388ff"
+}

@@ -1,0 +1,37 @@
+{
+  "title": {
+    "text": "Test: visibility"
+  },
+  "activation": {
+    "on_first_join": false
+  },
+  "resources": [
+    {
+      "resource": "spb_test:budget",
+      "quantum": 1,
+      "commit": "replace",
+      "initial": 6,
+      "name": {
+        "text": "budget"
+      }
+    }
+  ],
+  "groups": [
+    "spb_test:visibility_choices",
+    "spb_test:secret_group"
+  ],
+  "completion_rules": [
+    {
+      "key": "nonnegative",
+      "condition": {
+        "type": "spb:compare",
+        "left": "resource_spb_test_budget",
+        "operator": ">=",
+        "right": 0
+      },
+      "message": {
+        "text": "nonnegative"
+      }
+    }
+  ]
+}

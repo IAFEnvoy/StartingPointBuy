@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "train"
+  },
+  "icon": {
+    "id": "minecraft:book"
+  },
+  "resource_changes": {
+    "spb_test:budget": -1,
+    "spb_test:power": 1
+  },
+  "hard_max": 4,
+  "max_count": "2 + 2 * selected_spb_test_sword"
+}

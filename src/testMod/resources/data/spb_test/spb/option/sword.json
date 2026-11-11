@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "sword"
+  },
+  "icon": {
+    "id": "minecraft:book"
+  },
+  "resource_changes": {
+    "spb_test:budget": -2,
+    "spb_test:power": 1
+  }
+}

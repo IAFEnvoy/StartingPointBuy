@@ -1,0 +1,7 @@
+{
+  "default_value": 0,
+  "min": 0,
+  "max": 100,
+  "icon": {"id": "minecraft:iron_sword"},
+  "particle_color": "#ff6b6b"
+}

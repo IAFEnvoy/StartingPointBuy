@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "redeem"
+  },
+  "icon": {
+    "id": "minecraft:book"
+  },
+  "resource_changes": {
+    "spb_test:budget": -2,
+    "spb_test:readonly": -1
+  },
+  "hard_max": 2
+}

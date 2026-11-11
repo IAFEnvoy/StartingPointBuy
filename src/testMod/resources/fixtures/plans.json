@@ -1,0 +1,21 @@
+[
+  "spb_test:linked",
+  "spb_test:quota_total",
+  "spb_test:quota_distinct",
+  "spb_test:rounding",
+  "spb_test:fractional",
+  "spb_test:visibility",
+  "spb_test:reserve",
+  "spb_test:bounds",
+  "spb_test:formulas",
+  "spb_test:runtime_errors",
+  "spb_test:tags",
+  "spb_test:rewards",
+  "spb_test:optional",
+  "spb_test:readonly",
+  "spb_test:choice_single",
+  "spb_test:choice_total",
+  "spb_test:choice_pair",
+  "spb_test:choice_dynamic",
+  "spb_test:choice_zero"
+]

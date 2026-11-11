@@ -1,0 +1,12 @@
+{
+  "type": "saturn:modifier",
+  "icon": {"id": "minecraft:iron_sword"},
+  "modifiers": [
+    {
+      "attribute": "minecraft:attack_damage",
+      "id": "example:sword_training",
+      "amount": 2.0,
+      "operation": "add_value"
+    }
+  ]
+}

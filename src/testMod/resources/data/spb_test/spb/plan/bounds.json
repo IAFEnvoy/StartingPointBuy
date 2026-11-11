@@ -1,0 +1,32 @@
+{
+  "title": {
+    "text": "Test: bounds"
+  },
+  "activation": {
+    "on_first_join": false
+  },
+  "resources": [
+    {
+      "resource": "spb_test:capped",
+      "quantum": 1,
+      "commit": "replace",
+      "initial": 0,
+      "name": {
+        "text": "capped"
+      }
+    },
+    {
+      "resource": "spb_test:tokens",
+      "quantum": 1,
+      "commit": "replace",
+      "initial": 1,
+      "name": {
+        "text": "tokens"
+      }
+    }
+  ],
+  "groups": [
+    "spb_test:bounds_choices"
+  ],
+  "completion_rules": []
+}

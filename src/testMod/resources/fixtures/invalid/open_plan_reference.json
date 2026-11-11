@@ -1,0 +1,18 @@
+{
+  "resources": [],
+  "groups": [],
+  "outcomes": [
+    {
+      "key": "open",
+      "actions": [
+        {
+          "key": "open",
+          "action": {
+            "type": "spb:open_plan",
+            "plan": "spb_test:missing_plan"
+          }
+        }
+      ]
+    }
+  ]
+}

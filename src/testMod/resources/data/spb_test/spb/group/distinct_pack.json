@@ -1,0 +1,12 @@
+{
+  "title": {
+    "text": "distinct_pack"
+  },
+  "count_mode": "distinct",
+  "options": [
+    "spb_test:bead",
+    "spb_test:rune"
+  ],
+  "min_count": 2,
+  "max_count": 2
+}

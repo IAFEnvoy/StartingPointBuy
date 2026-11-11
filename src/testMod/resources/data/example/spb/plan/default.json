@@ -1,0 +1,125 @@
+{
+  "title": {
+    "translate": "spb.example.plan.title"
+  },
+  "description": {
+    "translate": "spb.example.plan.description"
+  },
+  "activation": {
+    "on_first_join": true,
+    "priority": 0
+  },
+  "resources": [
+    {
+      "resource": "example:points",
+      "commit": "replace",
+      "display": true,
+      "name": {
+        "translate": "spb.example.resource.points"
+      }
+    },
+    {
+      "resource": "example:fate",
+      "commit": "replace",
+      "display": true,
+      "name": {
+        "translate": "spb.example.resource.fate"
+      }
+    },
+    {
+      "resource": "example:strength",
+      "commit": "replace",
+      "display": true,
+      "name": {
+        "translate": "spb.example.resource.strength"
+      }
+    }
+  ],
+  "presets": [
+    {
+      "name": {
+        "translate": "spb.example.preset.warrior"
+      },
+      "description": {
+        "translate": "spb.example.preset.warrior.description"
+      },
+      "icon": {
+        "id": "minecraft:iron_sword"
+      },
+      "selections": {
+        "example:warrior": 1,
+        "example:strength": 4,
+        "example:archery": 1
+      }
+    },
+    {
+      "name": {
+        "translate": "spb.example.preset.scholar"
+      },
+      "description": {
+        "translate": "spb.example.preset.scholar.description"
+      },
+      "icon": {
+        "id": "minecraft:book"
+      },
+      "selections": {
+        "example:scholar": 1,
+        "example:strength": 2,
+        "example:archery": 1,
+        "example:alchemy": 1
+      }
+    }
+  ],
+  "ui": {
+    "preset_sidebar_width": 100,
+    "max_width": 0,
+    "max_height": 0,
+    "allow_close_before_complete": false
+  },
+  "groups": [
+    "example:profession",
+    "example:talents",
+    "example:attributes",
+    "example:drawbacks"
+  ],
+  "completion_rules": [
+    {
+      "key": "spend_all_points",
+      "condition": {
+        "type": "spb:compare",
+        "left": "resource_example_points",
+        "operator": "==",
+        "right": 0
+      },
+      "message": {
+        "translate": "spb.example.rule.points"
+      }
+    },
+    {
+      "key": "nonnegative_fate",
+      "condition": {
+        "type": "spb:compare",
+        "left": "resource_example_fate",
+        "operator": ">=",
+        "right": 0
+      },
+      "message": {
+        "translate": "spb.example.rule.fate"
+      }
+    }
+  ],
+  "outcomes": [
+    {
+      "key": "strong_body",
+      "condition": {
+        "type": "spb:compare",
+        "left": "resource_example_strength",
+        "operator": ">=",
+        "right": 4
+      },
+      "abilities": [
+        "example:strong_body"
+      ]
+    }
+  ]
+}

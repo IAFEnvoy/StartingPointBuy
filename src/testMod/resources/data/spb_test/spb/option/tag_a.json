@@ -1,0 +1,11 @@
+{
+  "name": {
+    "text": "tag_a"
+  },
+  "icon": {
+    "id": "minecraft:book"
+  },
+  "resource_changes": {
+    "spb_test:budget": -1
+  }
+}

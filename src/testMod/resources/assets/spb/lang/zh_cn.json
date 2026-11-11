@@ -1,0 +1,42 @@
+{
+  "spb.example.group.attributes": "属性",
+  "spb.example.group.attributes.description": "战士最多可加 4 点力量",
+  "spb.example.group.drawbacks": "缺陷",
+  "spb.example.group.profession": "职业",
+  "spb.example.group.talents": "天赋",
+  "spb.example.group.talents.description": "学者额外获得 1 个天赋名额",
+
+  "spb.example.message.welcome": "你的开局加点已生效，祝你好运！",
+
+  "spb.example.option.alchemy": "炼金",
+  "spb.example.option.alchemy.description": "获得开局炼金能力",
+  "spb.example.option.archery": "弓术",
+  "spb.example.option.archery.description": "获得弓术能力；战士购买更便宜",
+  "spb.example.option.indebted": "负债者",
+  "spb.example.option.indebted.description": "牺牲 1 点命运，额外获得 2 点分配点数",
+  "spb.example.option.scholar": "学者",
+  "spb.example.option.scholar.description": "额外获得 1 个天赋选择名额，解锁炼金",
+  "spb.example.option.strength": "力量",
+  "spb.example.option.strength.description": "每份提高 1 点力量属性",
+  "spb.example.option.warrior": "战士",
+  "spb.example.option.warrior.description": "力量 +1，弓术便宜 1 点，力量最多加 4 点",
+
+  "spb.example.plan.description": "把点数分配到职业、天赋、属性与缺陷上。",
+  "spb.example.plan.title": "开局加点",
+
+  "spb.example.preset.scholar": "学者",
+  "spb.example.preset.scholar.description": "学者、2 点力量、弓术与炼金",
+  "spb.example.preset.warrior": "战士",
+  "spb.example.preset.warrior.description": "战士、4 点力量与弓术",
+
+  "spb.example.resource.fate": "命运",
+  "spb.example.resource.points": "剩余点数",
+  "spb.example.resource.strength": "力量",
+
+  "spb.example.rule.fate": "命运不能透支",
+  "spb.example.rule.points": "必须将点数恰好分配完",
+
+  "spb.resource.example.fate": "命运",
+  "spb.resource.example.points": "点数",
+  "spb.resource.example.strength": "力量"
+}

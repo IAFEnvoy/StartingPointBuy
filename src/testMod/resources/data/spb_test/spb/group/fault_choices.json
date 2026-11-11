@@ -1,0 +1,11 @@
+{
+  "title": {
+    "text": "fault_choices"
+  },
+  "count_mode": "total",
+  "options": [
+    "spb_test:coupon",
+    "spb_test:fault",
+    "spb_test:overflow"
+  ]
+}

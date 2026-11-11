@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "brew"
+  },
+  "icon": {
+    "id": "minecraft:book"
+  },
+  "resource_changes": {
+    "spb_test:budget": -3,
+    "spb_test:tokens": -2
+  }
+}

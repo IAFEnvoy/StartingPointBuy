@@ -1,0 +1,9 @@
+{
+  "title": {
+    "text": "Tags"
+  },
+  "options": [
+    "#spb_test:tagged_options",
+    "spb_test:tag_a"
+  ]
+}

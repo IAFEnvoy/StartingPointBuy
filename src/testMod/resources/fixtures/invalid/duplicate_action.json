@@ -1,0 +1,46 @@
+{
+  "title": {
+    "text": "Invalid fixture"
+  },
+  "resources": [
+    {
+      "resource": "spb_test:budget",
+      "quantum": 1,
+      "commit": "replace",
+      "initial": 6,
+      "name": {
+        "text": "budget"
+      }
+    }
+  ],
+  "groups": [
+    "spb_test:reserve_choices"
+  ],
+  "outcomes": [
+    {
+      "key": "bundle",
+      "actions": [
+        {
+          "key": "same",
+          "action": {
+            "type": "saturn:give_item",
+            "stack": {
+              "id": "minecraft:bread",
+              "count": 1
+            }
+          }
+        },
+        {
+          "key": "same",
+          "action": {
+            "type": "saturn:give_item",
+            "stack": {
+              "id": "minecraft:bread",
+              "count": 1
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

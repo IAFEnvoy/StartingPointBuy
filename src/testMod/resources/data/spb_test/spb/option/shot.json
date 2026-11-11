@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "shot"
+  },
+  "icon": {
+    "id": "minecraft:book"
+  },
+  "resource_changes": {
+    "spb_test:budget": "-4 + selected_spb_test_sword",
+    "spb_test:tokens": -1
+  }
+}

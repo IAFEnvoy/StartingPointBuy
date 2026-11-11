@@ -1,0 +1,12 @@
+{
+  "type": "saturn:modifier",
+  "icon": {"id": "minecraft:golden_apple"},
+  "modifiers": [
+    {
+      "attribute": "minecraft:max_health",
+      "id": "example:strong_body",
+      "amount": 4.0,
+      "operation": "add_value"
+    }
+  ]
+}

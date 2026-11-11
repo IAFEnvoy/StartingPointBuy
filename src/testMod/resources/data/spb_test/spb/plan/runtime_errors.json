@@ -1,0 +1,36 @@
+{
+  "title": {
+    "text": "Test: runtime_errors"
+  },
+  "activation": {
+    "on_first_join": false
+  },
+  "resources": [
+    {
+      "resource": "spb_test:budget",
+      "quantum": 1,
+      "commit": "replace",
+      "initial": 1,
+      "name": {
+        "text": "budget"
+      }
+    }
+  ],
+  "groups": [
+    "spb_test:fault_choices"
+  ],
+  "completion_rules": [
+    {
+      "key": "nonnegative",
+      "condition": {
+        "type": "spb:compare",
+        "left": "resource_spb_test_budget",
+        "operator": ">=",
+        "right": 0
+      },
+      "message": {
+        "text": "nonnegative"
+      }
+    }
+  ]
+}

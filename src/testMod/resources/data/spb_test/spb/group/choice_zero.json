@@ -1,0 +1,12 @@
+{
+  "title": {
+    "text": "choice_zero"
+  },
+  "count_mode": "distinct",
+  "max_count": 0,
+  "options": [
+    "spb_test:bead",
+    "spb_test:rune",
+    "spb_test:wide_choice"
+  ]
+}

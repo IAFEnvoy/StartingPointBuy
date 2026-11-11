@@ -1,0 +1,8 @@
+{
+  "name": {
+    "text": "Orphan option"
+  },
+  "resource_changes": {
+    "spb_test:missing_resource": -1
+  }
+}

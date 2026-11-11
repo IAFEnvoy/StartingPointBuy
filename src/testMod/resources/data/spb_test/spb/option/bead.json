@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "bead"
+  },
+  "icon": {
+    "id": "minecraft:book"
+  },
+  "resource_changes": {
+    "spb_test:budget": -1
+  },
+  "hard_max": 4
+}

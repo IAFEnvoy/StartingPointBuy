@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "quarter"
+  },
+  "icon": {
+    "id": "minecraft:book"
+  },
+  "resource_changes": {
+    "spb_test:quarters": -0.25
+  },
+  "hard_max": 6
+}

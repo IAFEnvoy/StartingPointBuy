@@ -1,0 +1,17 @@
+{
+  "name": {
+    "text": "overflow"
+  },
+  "icon": {
+    "id": "minecraft:book"
+  },
+  "resource_changes": {
+    "spb_test:budget": {
+      "type": "saturn:sum",
+      "summands": [
+        -1e+308,
+        -1e+308
+      ]
+    }
+  }
+}

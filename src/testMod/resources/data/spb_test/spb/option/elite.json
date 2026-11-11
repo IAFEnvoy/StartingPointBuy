@@ -1,0 +1,23 @@
+{
+  "name": {
+    "text": "elite"
+  },
+  "icon": {
+    "id": "minecraft:book"
+  },
+  "resource_changes": {
+    "spb_test:budget": -3
+  },
+  "visible_condition": {
+    "type": "spb:compare",
+    "left": "selected_spb_test_unlock",
+    "operator": ">=",
+    "right": 1
+  },
+  "enabled_condition": {
+    "type": "spb:compare",
+    "left": "selected_spb_test_unlock",
+    "operator": ">=",
+    "right": 1
+  }
+}

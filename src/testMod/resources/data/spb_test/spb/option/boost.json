@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "boost"
+  },
+  "icon": {
+    "id": "minecraft:book"
+  },
+  "resource_changes": {
+    "spb_test:capped": 2,
+    "spb_test:tokens": -1
+  },
+  "hard_max": 3
+}

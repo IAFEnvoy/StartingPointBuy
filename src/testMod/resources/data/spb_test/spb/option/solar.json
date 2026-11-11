@@ -1,0 +1,25 @@
+{
+  "name": {
+    "text": "solar"
+  },
+  "icon": {
+    "id": "minecraft:book"
+  },
+  "resource_changes": {
+    "spb_test:budget": -2
+  },
+  "validation_rules": [
+    {
+      "key": "exclude_lunar",
+      "condition": {
+        "type": "spb:compare",
+        "left": "selected_spb_test_lunar",
+        "operator": "==",
+        "right": 0
+      },
+      "message": {
+        "text": "exclude_lunar"
+      }
+    }
+  ]
+}

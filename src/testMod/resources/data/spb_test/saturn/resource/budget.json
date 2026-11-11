@@ -1,0 +1,5 @@
+{
+  "default_value": 12,
+  "min": -100,
+  "max": 100
+}

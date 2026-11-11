@@ -1,0 +1,12 @@
+{
+  "title": {
+    "text": "total_pack"
+  },
+  "count_mode": "total",
+  "options": [
+    "spb_test:bead",
+    "spb_test:rune"
+  ],
+  "min_count": 2,
+  "max_count": 3
+}

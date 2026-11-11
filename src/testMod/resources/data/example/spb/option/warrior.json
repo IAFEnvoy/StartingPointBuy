@@ -1,0 +1,49 @@
+{
+  "name": {
+    "translate": "spb.example.option.warrior"
+  },
+  "description": {
+    "translate": "spb.example.option.warrior.description"
+  },
+  "icon": {
+    "id": "minecraft:iron_sword"
+  },
+  "hard_max": 1,
+  "resource_changes": {
+    "example:points": -2,
+    "example:strength": 1
+  },
+  "outcomes": [
+    {
+      "key": "warrior_start",
+      "abilities": [
+        "example:sword_training"
+      ],
+      "actions": [
+        {
+          "key": "starter_food",
+          "delay": 1,
+          "repeat": 1,
+          "action": {
+            "type": "saturn:give_item",
+            "stack": {
+              "id": "minecraft:bread",
+              "count": 2
+            }
+          }
+        },
+        {
+          "key": "welcome",
+          "delay": 1,
+          "repeat": 1,
+          "action": {
+            "type": "saturn:send_message",
+            "message": {
+              "translate": "spb.example.message.welcome"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

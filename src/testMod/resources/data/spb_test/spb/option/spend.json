@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "spend"
+  },
+  "icon": {
+    "id": "minecraft:book"
+  },
+  "resource_changes": {
+    "spb_test:budget": -2
+  },
+  "hard_max": 3
+}

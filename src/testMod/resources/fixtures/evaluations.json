@@ -1,0 +1,737 @@
+[
+  {
+    "name": "linked_empty",
+    "plan": "spb_test:linked",
+    "selections": {},
+    "can_complete": false,
+    "resources": {
+      "spb_test_budget": 9
+    }
+  },
+  {
+    "name": "linked_sword",
+    "plan": "spb_test:linked",
+    "selections": {
+      "spb_test:sword": 1,
+      "spb_test:shot": 1,
+      "spb_test:train": 4
+    },
+    "can_complete": true,
+    "max_counts": {
+      "train": 4
+    },
+    "resources": {
+      "spb_test_budget": 0,
+      "spb_test_tokens": 2,
+      "spb_test_power": 5
+    }
+  },
+  {
+    "name": "linked_sage",
+    "plan": "spb_test:linked",
+    "selections": {
+      "spb_test:sage": 1,
+      "spb_test:shot": 1,
+      "spb_test:brew": 1,
+      "spb_test:train": 1
+    },
+    "can_complete": true,
+    "max_counts": {
+      "train": 2
+    },
+    "resources": {
+      "spb_test_budget": 0,
+      "spb_test_tokens": 1,
+      "spb_test_power": 1
+    }
+  },
+  {
+    "name": "linked_role_switch",
+    "plan": "spb_test:linked",
+    "selections": {
+      "spb_test:sage": 1,
+      "spb_test:shot": 1,
+      "spb_test:train": 4
+    },
+    "can_complete": false,
+    "max_counts": {
+      "train": 2
+    },
+    "resources": {
+      "spb_test_budget": 0
+    }
+  },
+  {
+    "name": "linked_two_roles",
+    "plan": "spb_test:linked",
+    "selections": {
+      "spb_test:sage": 1,
+      "spb_test:sword": 1
+    },
+    "can_complete": false
+  },
+  {
+    "name": "linked_two_skills_for_sword",
+    "plan": "spb_test:linked",
+    "selections": {
+      "spb_test:sword": 1,
+      "spb_test:shot": 1,
+      "spb_test:brew": 1,
+      "spb_test:train": 1
+    },
+    "can_complete": false,
+    "resources": {
+      "spb_test_budget": 0
+    }
+  },
+  {
+    "name": "linked_tokens_exhausted",
+    "plan": "spb_test:linked",
+    "selections": {
+      "spb_test:sage": 1,
+      "spb_test:shot": 1,
+      "spb_test:brew": 1,
+      "spb_test:train": 1
+    },
+    "can_complete": false,
+    "baseline": {
+      "spb_test:budget": 9,
+      "spb_test:tokens": 0,
+      "spb_test:power": 0
+    }
+  },
+  {
+    "name": "total_three_units",
+    "plan": "spb_test:quota_total",
+    "selections": {
+      "spb_test:bead": 3
+    },
+    "can_complete": true,
+    "groups": {
+      "spb_test_total_pack": 3
+    },
+    "resources": {
+      "spb_test_budget": 3
+    }
+  },
+  {
+    "name": "total_four_units",
+    "plan": "spb_test:quota_total",
+    "selections": {
+      "spb_test:bead": 4
+    },
+    "can_complete": false,
+    "groups": {
+      "spb_test_total_pack": 4
+    }
+  },
+  {
+    "name": "total_below_min",
+    "plan": "spb_test:quota_total",
+    "selections": {
+      "spb_test:bead": 1
+    },
+    "can_complete": false
+  },
+  {
+    "name": "total_two_types",
+    "plan": "spb_test:quota_total",
+    "selections": {
+      "spb_test:bead": 1,
+      "spb_test:rune": 1
+    },
+    "can_complete": true,
+    "groups": {
+      "spb_test_total_pack": 2
+    }
+  },
+  {
+    "name": "distinct_one_type",
+    "plan": "spb_test:quota_distinct",
+    "selections": {
+      "spb_test:bead": 3
+    },
+    "can_complete": false,
+    "groups": {
+      "spb_test_distinct_pack": 1
+    }
+  },
+  {
+    "name": "distinct_six_units",
+    "plan": "spb_test:quota_distinct",
+    "selections": {
+      "spb_test:bead": 4,
+      "spb_test:rune": 2
+    },
+    "can_complete": true,
+    "groups": {
+      "spb_test_distinct_pack": 2
+    },
+    "resources": {
+      "spb_test_budget": 0
+    }
+  },
+  {
+    "name": "distinct_over_budget",
+    "plan": "spb_test:quota_distinct",
+    "selections": {
+      "spb_test:bead": 4,
+      "spb_test:rune": 3
+    },
+    "can_complete": false,
+    "resources": {
+      "spb_test_budget": -1
+    }
+  },
+  {
+    "name": "rounding_1",
+    "plan": "spb_test:rounding",
+    "selections": {
+      "spb_test:rounded": 1
+    },
+    "can_complete": false,
+    "max_counts": {
+      "rounded": 3
+    }
+  },
+  {
+    "name": "rounding_2",
+    "plan": "spb_test:rounding",
+    "selections": {
+      "spb_test:rounded": 2
+    },
+    "can_complete": true,
+    "max_counts": {
+      "rounded": 3
+    }
+  },
+  {
+    "name": "rounding_3",
+    "plan": "spb_test:rounding",
+    "selections": {
+      "spb_test:rounded": 3
+    },
+    "can_complete": true,
+    "max_counts": {
+      "rounded": 3
+    }
+  },
+  {
+    "name": "rounding_4",
+    "plan": "spb_test:rounding",
+    "selections": {
+      "spb_test:rounded": 4
+    },
+    "can_complete": false,
+    "max_counts": {
+      "rounded": 3
+    }
+  },
+  {
+    "name": "fraction_half",
+    "plan": "spb_test:fractional",
+    "selections": {
+      "spb_test:half": 3
+    },
+    "can_complete": true,
+    "resources": {
+      "spb_test_quarters": 0
+    }
+  },
+  {
+    "name": "fraction_mixed",
+    "plan": "spb_test:fractional",
+    "selections": {
+      "spb_test:quarter": 2,
+      "spb_test:half": 2
+    },
+    "can_complete": true,
+    "resources": {
+      "spb_test_quarters": 0
+    }
+  },
+  {
+    "name": "fraction_quarters",
+    "plan": "spb_test:fractional",
+    "selections": {
+      "spb_test:quarter": 6
+    },
+    "can_complete": true,
+    "resources": {
+      "spb_test_quarters": 0
+    }
+  },
+  {
+    "name": "fraction_unspent",
+    "plan": "spb_test:fractional",
+    "selections": {
+      "spb_test:half": 2
+    },
+    "can_complete": false,
+    "resources": {
+      "spb_test_quarters": 0.5
+    }
+  },
+  {
+    "name": "fraction_bad_quantum",
+    "plan": "spb_test:fractional",
+    "selections": {
+      "spb_test:sliver": 1
+    },
+    "can_complete": false,
+    "resources": {
+      "spb_test_quarters": 1.4
+    }
+  },
+  {
+    "name": "fraction_bad_baseline",
+    "plan": "spb_test:fractional",
+    "selections": {
+      "spb_test:half": 3
+    },
+    "can_complete": false,
+    "baseline": {
+      "spb_test:quarters": 1.6
+    }
+  },
+  {
+    "name": "fraction_hard_max",
+    "plan": "spb_test:fractional",
+    "selections": {
+      "spb_test:half": 4
+    },
+    "can_complete": false
+  },
+  {
+    "name": "visibility_empty",
+    "plan": "spb_test:visibility",
+    "selections": {},
+    "can_complete": true,
+    "visible": {
+      "elite": false
+    },
+    "enabled": {
+      "elite": false
+    },
+    "group_visible": {
+      "spb_test_secret_group": false
+    }
+  },
+  {
+    "name": "visibility_unlock",
+    "plan": "spb_test:visibility",
+    "selections": {
+      "spb_test:unlock": 1,
+      "spb_test:elite": 1
+    },
+    "can_complete": true,
+    "visible": {
+      "elite": true
+    },
+    "enabled": {
+      "elite": true
+    },
+    "resources": {
+      "spb_test_budget": 2
+    }
+  },
+  {
+    "name": "visibility_removed_prerequisite",
+    "plan": "spb_test:visibility",
+    "selections": {
+      "spb_test:elite": 1
+    },
+    "can_complete": false,
+    "visible": {
+      "elite": false
+    }
+  },
+  {
+    "name": "visibility_secret",
+    "plan": "spb_test:visibility",
+    "selections": {
+      "spb_test:unlock": 1,
+      "spb_test:secret": 1
+    },
+    "can_complete": true,
+    "group_visible": {
+      "spb_test_secret_group": true
+    },
+    "resources": {
+      "spb_test_budget": 4
+    }
+  },
+  {
+    "name": "visibility_hidden_selection",
+    "plan": "spb_test:visibility",
+    "selections": {
+      "spb_test:secret": 1
+    },
+    "can_complete": false,
+    "group_visible": {
+      "spb_test_secret_group": false
+    }
+  },
+  {
+    "name": "mutual_exclusion",
+    "plan": "spb_test:visibility",
+    "selections": {
+      "spb_test:solar": 1,
+      "spb_test:lunar": 1
+    },
+    "can_complete": false
+  },
+  {
+    "name": "single_exclusive_choice",
+    "plan": "spb_test:visibility",
+    "selections": {
+      "spb_test:solar": 1
+    },
+    "can_complete": true,
+    "resources": {
+      "spb_test_budget": 4
+    }
+  },
+  {
+    "name": "reserve_0",
+    "plan": "spb_test:reserve",
+    "selections": {
+      "spb_test:spend": 0
+    },
+    "can_complete": false,
+    "resources": {
+      "spb_test_budget": 5
+    }
+  },
+  {
+    "name": "reserve_1",
+    "plan": "spb_test:reserve",
+    "selections": {
+      "spb_test:spend": 1
+    },
+    "can_complete": true,
+    "resources": {
+      "spb_test_budget": 3
+    }
+  },
+  {
+    "name": "reserve_2",
+    "plan": "spb_test:reserve",
+    "selections": {
+      "spb_test:spend": 2
+    },
+    "can_complete": true,
+    "resources": {
+      "spb_test_budget": 1
+    }
+  },
+  {
+    "name": "reserve_3",
+    "plan": "spb_test:reserve",
+    "selections": {
+      "spb_test:spend": 3
+    },
+    "can_complete": false,
+    "resources": {
+      "spb_test_budget": -1
+    }
+  },
+  {
+    "name": "bounds_empty",
+    "plan": "spb_test:bounds",
+    "selections": {},
+    "can_complete": true
+  },
+  {
+    "name": "bounds_inside",
+    "plan": "spb_test:bounds",
+    "selections": {
+      "spb_test:boost": 1
+    },
+    "can_complete": true,
+    "resources": {
+      "spb_test_capped": 2,
+      "spb_test_tokens": 0
+    }
+  },
+  {
+    "name": "bounds_cap_overflow",
+    "plan": "spb_test:bounds",
+    "selections": {
+      "spb_test:boost": 2
+    },
+    "can_complete": false,
+    "baseline": {
+      "spb_test:capped": 0,
+      "spb_test:tokens": 3
+    }
+  },
+  {
+    "name": "bounds_negative_token",
+    "plan": "spb_test:bounds",
+    "selections": {
+      "spb_test:boost": 1
+    },
+    "can_complete": false,
+    "baseline": {
+      "spb_test:capped": 0,
+      "spb_test:tokens": 0
+    }
+  },
+  {
+    "name": "formula_sum",
+    "plan": "spb_test:formulas",
+    "selections": {
+      "spb_test:scalable": 3
+    },
+    "can_complete": true,
+    "resources": {
+      "spb_test_budget": 1
+    }
+  },
+  {
+    "name": "formula_coupon",
+    "plan": "spb_test:formulas",
+    "selections": {
+      "spb_test:scalable": 3,
+      "spb_test:coupon": 1
+    },
+    "can_complete": true,
+    "resources": {
+      "spb_test_budget": 4
+    }
+  },
+  {
+    "name": "formula_params",
+    "plan": "spb_test:formulas",
+    "selections": {
+      "spb_test:bundle": 1
+    },
+    "can_complete": true,
+    "resources": {
+      "spb_test_budget": 1
+    }
+  },
+  {
+    "name": "formula_overspend",
+    "plan": "spb_test:formulas",
+    "selections": {
+      "spb_test:bundle": 1,
+      "spb_test:scalable": 1
+    },
+    "can_complete": false,
+    "resources": {
+      "spb_test_budget": -1
+    }
+  },
+  {
+    "name": "formula_discount_balances",
+    "plan": "spb_test:formulas",
+    "selections": {
+      "spb_test:bundle": 1,
+      "spb_test:scalable": 1,
+      "spb_test:coupon": 1
+    },
+    "can_complete": true,
+    "resources": {
+      "spb_test_budget": 0
+    }
+  },
+  {
+    "name": "unselected_error_is_preview",
+    "plan": "spb_test:runtime_errors",
+    "selections": {},
+    "can_complete": true
+  },
+  {
+    "name": "selected_formula_recovers",
+    "plan": "spb_test:runtime_errors",
+    "selections": {
+      "spb_test:fault": 1,
+      "spb_test:coupon": 1
+    },
+    "can_complete": true,
+    "resources": {
+      "spb_test_budget": 0
+    }
+  },
+  {
+    "name": "tags_unique_sorted",
+    "plan": "spb_test:tags",
+    "selections": {
+      "spb_test:tag_a": 1
+    },
+    "can_complete": true,
+    "order": [
+      "tag_a",
+      "tag_b"
+    ],
+    "groups": {
+      "spb_test_tagged": 1
+    },
+    "resources": {
+      "spb_test_budget": 5
+    }
+  },
+  {
+    "name": "reward_preview",
+    "plan": "spb_test:rewards",
+    "selections": {
+      "spb_test:reward": 3
+    },
+    "can_complete": true,
+    "abilities": [
+      "spb_test:gift_power",
+      "spb_test:gift_speed"
+    ],
+    "tasks": 5,
+    "resources": {
+      "spb_test_budget": 0
+    }
+  },
+  {
+    "name": "reward_condition_false",
+    "plan": "spb_test:rewards",
+    "selections": {},
+    "can_complete": false,
+    "abilities": [],
+    "tasks": 0
+  },
+  {
+    "name": "readonly_draft",
+    "plan": "spb_test:readonly",
+    "selections": {
+      "spb_test:redeem": 2
+    },
+    "can_complete": true,
+    "resources": {
+      "spb_test_budget": 1,
+      "spb_test_readonly": 5
+    }
+  },
+  {
+    "name": "single_repeated_kind",
+    "plan": "spb_test:choice_single",
+    "selections": {
+      "spb_test:bead": 3
+    },
+    "can_complete": true,
+    "groups": {
+      "spb_test_choice_single": 1
+    }
+  },
+  {
+    "name": "single_two_kinds",
+    "plan": "spb_test:choice_single",
+    "selections": {
+      "spb_test:bead": 1,
+      "spb_test:rune": 1
+    },
+    "can_complete": false,
+    "groups": {
+      "spb_test_choice_single": 2
+    }
+  },
+  {
+    "name": "total_one_copy",
+    "plan": "spb_test:choice_total",
+    "selections": {
+      "spb_test:bead": 1
+    },
+    "can_complete": true,
+    "groups": {
+      "spb_test_choice_total": 1
+    }
+  },
+  {
+    "name": "total_repeated_copies",
+    "plan": "spb_test:choice_total",
+    "selections": {
+      "spb_test:bead": 2
+    },
+    "can_complete": false,
+    "groups": {
+      "spb_test_choice_total": 2
+    }
+  },
+  {
+    "name": "pair_two_kinds",
+    "plan": "spb_test:choice_pair",
+    "selections": {
+      "spb_test:bead": 3,
+      "spb_test:rune": 2
+    },
+    "can_complete": true,
+    "groups": {
+      "spb_test_choice_pair": 2
+    }
+  },
+  {
+    "name": "pair_three_kinds",
+    "plan": "spb_test:choice_pair",
+    "selections": {
+      "spb_test:bead": 1,
+      "spb_test:rune": 1,
+      "spb_test:wide_choice": 1
+    },
+    "can_complete": false,
+    "groups": {
+      "spb_test_choice_pair": 3
+    }
+  },
+  {
+    "name": "dynamic_one_kind",
+    "plan": "spb_test:choice_dynamic",
+    "selections": {
+      "spb_test:bead": 2
+    },
+    "can_complete": true,
+    "groups": {
+      "spb_test_choice_dynamic": 1
+    }
+  },
+  {
+    "name": "dynamic_expanded_limit",
+    "plan": "spb_test:choice_dynamic",
+    "selections": {
+      "spb_test:bead": 2,
+      "spb_test:wide_choice": 1
+    },
+    "can_complete": true,
+    "groups": {
+      "spb_test_choice_dynamic": 2
+    }
+  },
+  {
+    "name": "dynamic_reduced_limit",
+    "plan": "spb_test:choice_dynamic",
+    "selections": {
+      "spb_test:bead": 1,
+      "spb_test:rune": 1
+    },
+    "can_complete": false,
+    "groups": {
+      "spb_test_choice_dynamic": 2
+    }
+  },
+  {
+    "name": "zero_no_choices",
+    "plan": "spb_test:choice_zero",
+    "selections": {},
+    "can_complete": true,
+    "groups": {
+      "spb_test_choice_zero": 0
+    }
+  },
+  {
+    "name": "zero_selected_choice",
+    "plan": "spb_test:choice_zero",
+    "selections": {
+      "spb_test:bead": 1
+    },
+    "can_complete": false,
+    "groups": {
+      "spb_test_choice_zero": 1
+    }
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "sage"
+  },
+  "icon": {
+    "id": "minecraft:book"
+  },
+  "resource_changes": {
+    "spb_test:budget": -1,
+    "spb_test:tokens": 1
+  }
+}

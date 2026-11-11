@@ -1,0 +1,10 @@
+{
+  "title": {
+    "text": "training"
+  },
+  "count_mode": "total",
+  "options": [
+    "spb_test:train"
+  ],
+  "max_count": "2 + 2 * selected_spb_test_sword"
+}

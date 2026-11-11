@@ -1,0 +1,37 @@
+{
+  "title": {
+    "text": "Test: tags"
+  },
+  "activation": {
+    "on_first_join": false
+  },
+  "resources": [
+    {
+      "resource": "spb_test:budget",
+      "quantum": 1,
+      "commit": "replace",
+      "initial": 6,
+      "name": {
+        "text": "budget"
+      }
+    }
+  ],
+  "groups": [
+    "#spb_test:catalog",
+    "spb_test:tagged"
+  ],
+  "completion_rules": [
+    {
+      "key": "nonnegative",
+      "condition": {
+        "type": "spb:compare",
+        "left": "resource_spb_test_budget",
+        "operator": ">=",
+        "right": 0
+      },
+      "message": {
+        "text": "nonnegative"
+      }
+    }
+  ]
+}

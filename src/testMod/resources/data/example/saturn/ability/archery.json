@@ -1,0 +1,12 @@
+{
+  "type": "saturn:modifier",
+  "icon": {"id": "minecraft:bow"},
+  "modifiers": [
+    {
+      "attribute": "minecraft:attack_damage",
+      "id": "example:archery",
+      "amount": 1.0,
+      "operation": "add_value"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "resources": [
+    {
+      "resource": "spb_test:collision-a"
+    },
+    {
+      "resource": "spb_test:collision_a"
+    }
+  ],
+  "groups": []
+}

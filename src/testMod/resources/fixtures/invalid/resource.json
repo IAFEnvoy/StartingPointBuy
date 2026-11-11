@@ -1,0 +1,19 @@
+{
+  "title": {
+    "text": "Invalid fixture"
+  },
+  "resources": [
+    {
+      "resource": "spb_test:missing",
+      "quantum": 1,
+      "commit": "replace",
+      "initial": 6,
+      "name": {
+        "text": "budget"
+      }
+    }
+  ],
+  "groups": [
+    "spb_test:reserve_choices"
+  ]
+}

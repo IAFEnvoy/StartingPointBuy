@@ -1,0 +1,16 @@
+{
+  "name": {
+    "translate": "spb.example.option.indebted"
+  },
+  "description": {
+    "translate": "spb.example.option.indebted.description"
+  },
+  "icon": {
+    "id": "minecraft:rotten_flesh"
+  },
+  "hard_max": 1,
+  "resource_changes": {
+    "example:points": 2,
+    "example:fate": -1
+  }
+}

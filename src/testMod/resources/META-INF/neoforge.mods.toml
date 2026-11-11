@@ -1,0 +1,22 @@
+license="All Rights Reserved"
+
+[[mods]]
+modId="spb_test"
+version="${mod_version}"
+displayName="Starting Point Buy Test Mod"
+authors="IAFEnvoy"
+description='''Development examples and datapack regression tests for Starting Point Buy.'''
+
+[[dependencies.spb_test]]
+modId="spb"
+type="required"
+versionRange="[${mod_version},)"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.spb_test]]
+modId="saturn"
+type="required"
+versionRange="[1.3,)"
+ordering="AFTER"
+side="BOTH"

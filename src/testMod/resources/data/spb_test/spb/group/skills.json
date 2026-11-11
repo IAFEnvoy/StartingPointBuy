@@ -1,0 +1,11 @@
+{
+  "title": {
+    "text": "skills"
+  },
+  "count_mode": "distinct",
+  "options": [
+    "spb_test:shot",
+    "spb_test:brew"
+  ],
+  "max_count": "1 + selected_spb_test_sage"
+}

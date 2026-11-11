@@ -1,0 +1,22 @@
+{
+  "name": {
+    "translate": "spb.example.option.scholar"
+  },
+  "description": {
+    "translate": "spb.example.option.scholar.description"
+  },
+  "icon": {
+    "id": "minecraft:book"
+  },
+  "resource_changes": {
+    "example:points": -1
+  },
+  "outcomes": [
+    {
+      "key": "scholar_start",
+      "abilities": [
+        "example:alchemy"
+      ]
+    }
+  ]
+}

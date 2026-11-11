@@ -1,0 +1,11 @@
+{
+  "title": {
+    "text": "rounded_pack"
+  },
+  "count_mode": "total",
+  "options": [
+    "spb_test:rounded"
+  ],
+  "min_count": 1.2,
+  "max_count": 3.9
+}

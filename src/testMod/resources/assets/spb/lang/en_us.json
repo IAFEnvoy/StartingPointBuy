@@ -1,0 +1,42 @@
+{
+  "spb.example.group.attributes": "Attributes",
+  "spb.example.group.attributes.description": "Warriors may buy up to 4 strength",
+  "spb.example.group.drawbacks": "Drawbacks",
+  "spb.example.group.profession": "Profession",
+  "spb.example.group.talents": "Talents",
+  "spb.example.group.talents.description": "Scholars may pick one additional talent",
+
+  "spb.example.message.welcome": "Your starting point has been applied. Good luck!",
+
+  "spb.example.option.alchemy": "Alchemy",
+  "spb.example.option.alchemy.description": "Grants the starting alchemy ability",
+  "spb.example.option.archery": "Archery",
+  "spb.example.option.archery.description": "Grants the archery ability; cheaper for warriors",
+  "spb.example.option.indebted": "Indebted",
+  "spb.example.option.indebted.description": "Trade 1 fate for 2 extra points",
+  "spb.example.option.scholar": "Scholar",
+  "spb.example.option.scholar.description": "One additional talent slot, unlocks alchemy",
+  "spb.example.option.strength": "Strength",
+  "spb.example.option.strength.description": "Each point raises the strength attribute",
+  "spb.example.option.warrior": "Warrior",
+  "spb.example.option.warrior.description": "Strength +1, archery costs 1 less, up to 4 strength",
+
+  "spb.example.plan.description": "Spend your points on a profession, talents, attributes and drawbacks.",
+  "spb.example.plan.title": "Starting Point Buy",
+
+  "spb.example.preset.scholar": "Scholar",
+  "spb.example.preset.scholar.description": "Scholar, 2 strength, archery and alchemy",
+  "spb.example.preset.warrior": "Warrior",
+  "spb.example.preset.warrior.description": "Warrior, 4 strength and archery",
+
+  "spb.example.resource.fate": "Fate",
+  "spb.example.resource.points": "Points",
+  "spb.example.resource.strength": "Strength",
+
+  "spb.example.rule.fate": "Fate must not go into debt",
+  "spb.example.rule.points": "All points must be spent",
+
+  "spb.resource.example.fate": "Fate",
+  "spb.resource.example.points": "Points",
+  "spb.resource.example.strength": "Strength"
+}

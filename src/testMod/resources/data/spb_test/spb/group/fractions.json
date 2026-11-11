@@ -1,0 +1,12 @@
+{
+  "title": {
+    "text": "fractions"
+  },
+  "count_mode": "total",
+  "options": [
+    "spb_test:quarter",
+    "spb_test:half",
+    "spb_test:sliver"
+  ],
+  "max_count": 10
+}

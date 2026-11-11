@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "rounded"
+  },
+  "icon": {
+    "id": "minecraft:book"
+  },
+  "resource_changes": {
+    "spb_test:budget": -1
+  },
+  "hard_max": 4,
+  "min_count": 1.2,
+  "max_count": 3.9
+}

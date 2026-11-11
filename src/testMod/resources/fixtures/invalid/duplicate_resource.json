@@ -1,0 +1,16 @@
+{
+  "title": {
+    "text": "Invalid fixture"
+  },
+  "resources": [
+    {
+      "resource": "spb_test:budget"
+    },
+    {
+      "resource": "spb_test:budget"
+    }
+  ],
+  "groups": [
+    "spb_test:reserve_choices"
+  ]
+}

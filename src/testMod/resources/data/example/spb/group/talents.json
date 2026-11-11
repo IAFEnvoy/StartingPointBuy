@@ -1,0 +1,15 @@
+{
+  "title": {
+    "translate": "spb.example.group.talents"
+  },
+  "description": {
+    "translate": "spb.example.group.talents.description"
+  },
+  "count_mode": "distinct",
+  "min_count": 0,
+  "max_count": "1 + selected_example_scholar",
+  "options": [
+    "example:archery",
+    "example:alchemy"
+  ]
+}

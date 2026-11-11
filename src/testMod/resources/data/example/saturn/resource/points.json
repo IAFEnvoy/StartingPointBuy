@@ -1,0 +1,7 @@
+{
+  "default_value": 8,
+  "min": -100000,
+  "max": 100000,
+  "icon": {"id": "minecraft:gold_nugget"},
+  "particle_color": "#ffd166"
+}

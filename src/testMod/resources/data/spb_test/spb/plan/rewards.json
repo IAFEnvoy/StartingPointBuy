@@ -1,0 +1,74 @@
+{
+  "title": {
+    "text": "Test: rewards"
+  },
+  "activation": {
+    "on_first_join": false
+  },
+  "resources": [
+    {
+      "resource": "spb_test:budget",
+      "quantum": 1,
+      "commit": "replace",
+      "initial": 3,
+      "name": {
+        "text": "budget"
+      }
+    }
+  ],
+  "groups": [
+    "spb_test:reward_choices"
+  ],
+  "completion_rules": [
+    {
+      "key": "spend_all",
+      "condition": {
+        "type": "spb:compare",
+        "left": "resource_spb_test_budget",
+        "operator": "==",
+        "right": 0
+      },
+      "message": {
+        "text": "spend_all"
+      }
+    }
+  ],
+  "presets": [
+    {
+      "name": {
+        "text": "All rewards"
+      },
+      "selections": {
+        "spb_test:reward": 3
+      }
+    }
+  ],
+  "outcomes": [
+    {
+      "key": "plan_grant",
+      "condition": {
+        "type": "spb:compare",
+        "left": "selected_spb_test_reward",
+        "operator": "==",
+        "right": 3
+      },
+      "abilities": [
+        "spb_test:gift_power"
+      ],
+      "actions": [
+        {
+          "key": "bread",
+          "delay": 1.2,
+          "repeat": "selected_spb_test_reward",
+          "action": {
+            "type": "saturn:give_item",
+            "stack": {
+              "id": "minecraft:bread",
+              "count": 1
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "title": {
+    "text": "Test: fractional"
+  },
+  "activation": {
+    "on_first_join": false
+  },
+  "resources": [
+    {
+      "resource": "spb_test:quarters",
+      "quantum": 0.25,
+      "commit": "replace",
+      "initial": 1.5,
+      "name": {
+        "text": "credit"
+      }
+    }
+  ],
+  "groups": [
+    "spb_test:fractions"
+  ],
+  "completion_rules": [
+    {
+      "key": "exact_zero",
+      "condition": {
+        "type": "spb:compare",
+        "left": "resource_spb_test_quarters",
+        "operator": "==",
+        "right": 0
+      },
+      "message": {
+        "text": "exact_zero"
+      }
+    }
+  ]
+}

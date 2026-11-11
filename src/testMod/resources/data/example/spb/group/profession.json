@@ -1,0 +1,11 @@
+{
+  "title": {
+    "translate": "spb.example.group.profession"
+  },
+  "min_count": 1,
+  "max_count": 1,
+  "options": [
+    "example:warrior",
+    "example:scholar"
+  ]
+}

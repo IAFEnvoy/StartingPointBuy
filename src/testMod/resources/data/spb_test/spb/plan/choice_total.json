@@ -1,0 +1,15 @@
+{
+  "title": {
+    "text": "Test: choice_total"
+  },
+  "resources": [
+    {
+      "resource": "spb_test:budget",
+      "name": {"text": "Budget"},
+      "initial": 12
+    }
+  ],
+  "groups": [
+    "spb_test:choice_total"
+  ]
+}

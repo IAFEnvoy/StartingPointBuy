@@ -1,0 +1,177 @@
+[
+  {
+    "name": "title_type",
+    "file": "fixtures/invalid/title_type.json",
+    "stage": "decode",
+    "path": "title",
+    "kind": "plan"
+  },
+  {
+    "name": "quantum",
+    "file": "fixtures/invalid/quantum.json",
+    "stage": "decode",
+    "path": "quantum",
+    "kind": "plan"
+  },
+  {
+    "name": "resource",
+    "file": "fixtures/invalid/resource.json",
+    "stage": "decode",
+    "path": "resource",
+    "kind": "plan"
+  },
+  {
+    "name": "group",
+    "file": "fixtures/invalid/group.json",
+    "stage": "decode",
+    "path": "groups",
+    "kind": "plan"
+  },
+  {
+    "name": "ability",
+    "file": "fixtures/invalid/ability.json",
+    "stage": "decode",
+    "path": "abilities",
+    "kind": "plan"
+  },
+  {
+    "name": "preset_text",
+    "file": "fixtures/invalid/preset_text.json",
+    "stage": "decode",
+    "path": "",
+    "kind": "plan"
+  },
+  {
+    "name": "preset_negative",
+    "file": "fixtures/invalid/preset_negative.json",
+    "stage": "decode",
+    "path": "",
+    "kind": "plan"
+  },
+  {
+    "name": "preset_unknown",
+    "file": "fixtures/invalid/preset_unknown.json",
+    "stage": "resolve",
+    "path": "presets",
+    "kind": "plan"
+  },
+  {
+    "name": "unknown_variable",
+    "file": "fixtures/invalid/unknown_variable.json",
+    "stage": "resolve",
+    "path": "completion_rules",
+    "kind": "plan"
+  },
+  {
+    "name": "duplicate_outcome",
+    "file": "fixtures/invalid/duplicate_outcome.json",
+    "stage": "decode",
+    "path": "outcomes",
+    "kind": "plan"
+  },
+  {
+    "name": "preset_above_hardmax",
+    "file": "fixtures/invalid/preset_above_hardmax.json",
+    "stage": "resolve",
+    "path": "presets",
+    "kind": "plan"
+  },
+  {
+    "name": "syntax_typed",
+    "file": "fixtures/invalid/syntax_typed.json",
+    "stage": "decode",
+    "path": "",
+    "kind": "plan"
+  },
+  {
+    "name": "input_key",
+    "file": "fixtures/invalid/input_key.json",
+    "stage": "decode",
+    "path": "",
+    "kind": "plan"
+  },
+  {
+    "name": "resource_alias_collision",
+    "file": "fixtures/invalid/resource_alias_collision.json",
+    "stage": "decode",
+    "path": "",
+    "kind": "plan"
+  },
+  {
+    "name": "group_alias_collision",
+    "file": "fixtures/invalid/group_alias_collision.json",
+    "stage": "resolve",
+    "path": "groups",
+    "kind": "plan"
+  },
+  {
+    "name": "duplicate_resource",
+    "file": "fixtures/invalid/duplicate_resource.json",
+    "stage": "decode",
+    "path": "",
+    "kind": "plan"
+  },
+  {
+    "name": "option_alias_collision",
+    "file": "fixtures/invalid/option_alias_collision.json",
+    "stage": "resolve",
+    "path": "options",
+    "kind": "group"
+  },
+  {
+    "name": "blank_completion_key",
+    "file": "fixtures/invalid/blank_completion_key.json",
+    "stage": "decode",
+    "path": "",
+    "kind": "plan"
+  },
+  {
+    "name": "missing_group_tag",
+    "file": "fixtures/invalid/missing_group_tag.json",
+    "stage": "resolve",
+    "path": "groups",
+    "kind": "plan"
+  },
+  {
+    "name": "missing_option_tag",
+    "file": "fixtures/invalid/missing_option_tag.json",
+    "stage": "resolve",
+    "path": "options",
+    "kind": "group"
+  },
+  {
+    "name": "orphan_hardmax",
+    "file": "fixtures/invalid/orphan_hardmax.json",
+    "stage": "decode",
+    "path": "",
+    "kind": "option"
+  },
+  {
+    "name": "orphan_missing_resource",
+    "file": "fixtures/invalid/orphan_missing_resource.json",
+    "stage": "decode",
+    "path": "",
+    "kind": "option"
+  },
+  {
+    "name": "orphan_missing_option",
+    "file": "fixtures/invalid/orphan_missing_option.json",
+    "stage": "decode",
+    "path": "",
+    "kind": "group"
+  },
+  {
+    "name": "duplicate_action",
+    "file": "fixtures/invalid/duplicate_action.json",
+    "stage": "decode",
+    "path": "",
+    "kind": "plan"
+  },
+  {
+    "name": "open_plan_reference",
+    "file": "fixtures/invalid/open_plan_reference.json",
+    "stage": "decode",
+    "path": "plan",
+    "kind": "plan"
+  }
+]

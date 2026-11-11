@@ -1,0 +1,12 @@
+{
+  "title": {
+    "text": "choice_dynamic"
+  },
+  "count_mode": "distinct",
+  "max_count": "1 + selected_spb_test_wide_choice",
+  "options": [
+    "spb_test:bead",
+    "spb_test:rune",
+    "spb_test:wide_choice"
+  ]
+}

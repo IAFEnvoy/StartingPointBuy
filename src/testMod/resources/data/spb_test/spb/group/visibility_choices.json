@@ -1,0 +1,12 @@
+{
+  "title": {
+    "text": "visibility_choices"
+  },
+  "count_mode": "distinct",
+  "options": [
+    "spb_test:unlock",
+    "spb_test:elite",
+    "spb_test:solar",
+    "spb_test:lunar"
+  ]
+}

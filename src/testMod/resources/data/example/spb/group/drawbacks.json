@@ -1,0 +1,11 @@
+{
+  "title": {
+    "translate": "spb.example.group.drawbacks"
+  },
+  "count_mode": "distinct",
+  "min_count": 0,
+  "max_count": 1,
+  "options": [
+    "example:indebted"
+  ]
+}
