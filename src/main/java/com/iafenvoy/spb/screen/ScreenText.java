@@ -16,7 +16,6 @@ import java.util.Locale;
  * Presentation-only text, shared by rendering, resource wrapping and tooltips.
  */
 record ScreenText(Font font) {
-
     Component trim(Component component, int width) {
         if (width <= 0) return Component.empty();
         if (this.font.width(component) <= width) return component;

@@ -14,8 +14,7 @@ public record PlanScreenLayout(ScreenRectangle panel, ScreenRectangle presets, S
         int availableHeight = Math.max(80, height - 32);
         int panelWidth = ui.maxWidth() > 0 ? Math.min(availableWidth, Math.max(120, ui.maxWidth())) : availableWidth;
         int panelHeight = ui.maxHeight() > 0 ? Math.min(availableHeight, Math.max(80, ui.maxHeight())) : availableHeight;
-        ScreenRectangle panel = new ScreenRectangle((width - panelWidth) / 2, (height - panelHeight) / 2,
-                panelWidth, panelHeight);
+        ScreenRectangle panel = new ScreenRectangle((width - panelWidth) / 2, (height - panelHeight) / 2, panelWidth, panelHeight);
         int bodyWidth = panelWidth - 16;
         int sidebar = 0;
         if (hasPresets) {

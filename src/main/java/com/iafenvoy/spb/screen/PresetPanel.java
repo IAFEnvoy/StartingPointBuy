@@ -51,8 +51,7 @@ final class PresetPanel {
             graphics.text(text.font(), custom, area.right() - 2 - text.font().width(custom), area.y(), ScreenDrawing.ACCENT);
         }
         graphics.disableScissor();
-        ScreenDrawing.clip(graphics, new ScreenRectangle(area.x(), area.y() + HEADING_HEIGHT,
-                area.w(), area.h() - HEADING_HEIGHT));
+        ScreenDrawing.clip(graphics, new ScreenRectangle(area.x(), area.y() + HEADING_HEIGHT, area.w(), area.h() - HEADING_HEIGHT));
         for (int index = 0; index < snapshot.presets().size(); index++) {
             PresetLine preset = snapshot.presets().get(index);
             ScreenRectangle row = this.row(index);
@@ -64,8 +63,7 @@ final class PresetPanel {
                 ScreenDrawing.icon(graphics, preset.icon(), iconX, row.y() + 1);
                 textX += 19;
             }
-            graphics.text(text.font(), text.trim(preset.name(), row.right() - textX - 4), textX, row.y() + 5,
-                    preset.matches() ? ScreenDrawing.HEADER : ScreenDrawing.TEXT);
+            graphics.text(text.font(), text.trim(preset.name(), row.right() - textX - 4), textX, row.y() + 5, preset.matches() ? ScreenDrawing.HEADER : ScreenDrawing.TEXT);
         }
         graphics.disableScissor();
         ScreenDrawing.scrollbar(graphics, this.scroll);
@@ -95,7 +93,6 @@ final class PresetPanel {
 
     private ScreenRectangle row(int index) {
         ScreenRectangle area = this.scroll.bounds();
-        return new ScreenRectangle(area.x(), area.y() + HEADING_HEIGHT + index * ROW_HEIGHT - (int) this.scroll.offset(),
-                area.w() - ScrollArea.BAR_WIDTH, ROW_HEIGHT - 2);
+        return new ScreenRectangle(area.x(), area.y() + HEADING_HEIGHT + index * ROW_HEIGHT - (int) this.scroll.offset(), area.w() - ScrollArea.BAR_WIDTH, ROW_HEIGHT - 2);
     }
 }

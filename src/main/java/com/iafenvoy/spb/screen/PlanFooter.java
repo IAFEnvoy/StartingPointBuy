@@ -61,18 +61,16 @@ final class PlanFooter {
         if (panel.w() - 16 >= 30) {
             graphics.text(text.font(), text.trim(status, panel.w() - 16), panel.x() + 8, layout.statusY(), color);
         }
-        ScreenDrawing.button(graphics, text, layout.close(), Component.translatable("spb.gui.save_and_close"),
-                !closeLocked && !this.requests.pending(), mouseX, mouseY);
-        ScreenDrawing.button(graphics, text, layout.reset(), Component.translatable(this.requests.needsRefresh()
-                ? "spb.gui.refresh" : "spb.gui.reset"), this.requests.canResetOrRefresh(), mouseX, mouseY);
+        ScreenDrawing.button(graphics, text, layout.close(), Component.translatable("spb.gui.save_and_close"), !closeLocked && !this.requests.pending(), mouseX, mouseY);
+        ScreenDrawing.button(graphics, text, layout.reset(), Component.translatable(this.requests.needsRefresh() ? "spb.gui.refresh" : "spb.gui.reset"), this.requests.canResetOrRefresh(), mouseX, mouseY);
         ScreenDrawing.button(graphics, text, layout.confirm(), Component.translatable("spb.gui.confirm"), this.requests.canSubmit(), mouseX, mouseY);
     }
 
     List<Component> tooltip(ScreenText text, PlanScreenLayout layout, boolean closeLocked, int mouseX, int mouseY) {
-        if (layout.close().contains(mouseX, mouseY)) return List.of(Component.translatable(closeLocked
-                ? "spb.gui.close_locked.tooltip" : "spb.gui.save_and_close.tooltip"));
-        if (layout.reset().contains(mouseX, mouseY)) return List.of(Component.translatable(this.requests.needsRefresh()
-                ? "spb.gui.refresh.tooltip" : "spb.gui.reset.tooltip"));
+        if (layout.close().contains(mouseX, mouseY))
+            return List.of(Component.translatable(closeLocked ? "spb.gui.close_locked.tooltip" : "spb.gui.save_and_close.tooltip"));
+        if (layout.reset().contains(mouseX, mouseY))
+            return List.of(Component.translatable(this.requests.needsRefresh() ? "spb.gui.refresh.tooltip" : "spb.gui.reset.tooltip"));
         if (layout.confirm().contains(mouseX, mouseY))
             return List.of(Component.translatable("spb.gui.confirm.tooltip"));
         int relativeY = mouseY - layout.footerY() - 4;
@@ -80,9 +78,8 @@ final class PlanFooter {
             int x = layout.panel().x() + 8;
             for (ResourceLine resource : this.rows.get(relativeY / 11)) {
                 int width = text.resourceWidth(resource);
-                if (mouseX >= x && mouseX < x + width) {
+                if (mouseX >= x && mouseX < x + width)
                     return List.of(Component.translatable("spb.gui.resource.tooltip", resource.base(), resource.min(), resource.max()));
-                }
                 x += width;
             }
         }

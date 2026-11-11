@@ -16,6 +16,15 @@ import java.util.Map;
 public record EvaluationResult(ResolvedPlan plan, Map<String, Double> variables, List<ResourceView> resources,
                                List<GroupView> groups, Map<Identifier, OptionView> options, List<Issue> issues,
                                List<RuleFailure> failures, List<OutcomePlan> outcomes, boolean canComplete) {
+    public EvaluationResult {
+        variables = Map.copyOf(variables);
+        resources = List.copyOf(resources);
+        groups = List.copyOf(groups);
+        issues = List.copyOf(issues);
+        failures = List.copyOf(failures);
+        outcomes = List.copyOf(outcomes);
+    }
+
     public boolean hasErrors() {
         return this.issues.stream().anyMatch(Issue::isError);
     }

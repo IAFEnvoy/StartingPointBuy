@@ -49,16 +49,13 @@ final class ScreenDrawing {
         blit(graphics, !active ? BUTTON_DISABLED : highlighted ? HIGHLIGHTED : BUTTON, rect);
     }
 
-    static void button(GuiGraphicsExtractor graphics, ScreenText text, ScreenRectangle rect, Component label,
-                       boolean active, int mouseX, int mouseY) {
+    static void button(GuiGraphicsExtractor graphics, ScreenText text, ScreenRectangle rect, Component label, boolean active, int mouseX, int mouseY) {
         buttonBackground(graphics, rect, active, active && rect.contains(mouseX, mouseY));
-        graphics.centeredText(text.font(), text.trim(label, rect.w() - 8), rect.x() + rect.w() / 2,
-                rect.y() + (rect.h() - text.font().lineHeight) / 2, active ? HEADER : 0xFFA0A0A0);
+        graphics.centeredText(text.font(), text.trim(label, rect.w() - 8), rect.x() + rect.w() / 2, rect.y() + (rect.h() - text.font().lineHeight) / 2, active ? HEADER : 0xFFA0A0A0);
     }
 
     static void checkbox(GuiGraphicsExtractor graphics, boolean selected, boolean hover, int x, int y) {
-        Identifier sprite = selected ? (hover ? CHECKBOX_SELECTED_HIGHLIGHTED : CHECKBOX_SELECTED)
-                : hover ? CHECKBOX_HIGHLIGHTED : CHECKBOX;
+        Identifier sprite = selected ? (hover ? CHECKBOX_SELECTED_HIGHLIGHTED : CHECKBOX_SELECTED) : hover ? CHECKBOX_HIGHLIGHTED : CHECKBOX;
         blit(graphics, sprite, new ScreenRectangle(x, y, 17, 17));
     }
 
@@ -69,9 +66,10 @@ final class ScreenDrawing {
     static void icon(GuiGraphicsExtractor graphics, Optional<IconReference> icon, int x, int y) {
         if (icon.isEmpty()) return;
         IconReference reference = icon.get();
-        if (reference.texture().isPresent()) {
+        if (reference.texture().isPresent())
             graphics.blit(RenderPipelines.GUI_TEXTURED, reference.texture().get(), x, y, 0.0F, 0.0F, 16, 16, 16, 16);
-        } else if (reference.stack().isPresent()) graphics.item(reference.stack().get(), x, y);
+        else if (reference.stack().isPresent())
+            graphics.item(reference.stack().get(), x, y);
     }
 
     static void clip(GuiGraphicsExtractor graphics, ScreenRectangle rect) {

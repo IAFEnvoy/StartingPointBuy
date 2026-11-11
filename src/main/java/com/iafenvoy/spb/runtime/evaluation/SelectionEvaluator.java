@@ -1,5 +1,7 @@
 package com.iafenvoy.spb.runtime.evaluation;
 
+import com.google.common.collect.LinkedListMultimap;
+import com.google.common.collect.ListMultimap;
 import com.iafenvoy.saturn.data.condition.EntityCondition;
 import com.iafenvoy.saturn.data.context.condition.EntityConditionContext;
 import com.iafenvoy.saturn.data.resource.Resource;
@@ -54,9 +56,7 @@ public final class SelectionEvaluator {
      * Evaluation entry point that does not require a live player. Used by the self-test and by any
      * caller that only needs the numeric result; conditions that need an entity simply fail.
      */
-    public static EvaluationResult evaluate(ResolvedPlan plan, @Nullable Player player,
-                                            @Nullable HolderLookup.Provider access,
-                                            SelectionData data) {
+    public static EvaluationResult evaluate(ResolvedPlan plan, @Nullable Player player, @Nullable HolderLookup.Provider access, SelectionData data) {
         List<Issue> issues = new ArrayList<>(plan.issues());
         String base = "plan/" + plan.id();
 
@@ -89,35 +89,27 @@ public final class SelectionEvaluator {
 
         List<RuleFailure> failures = new ArrayList<>();
         List<ResourceView> resources = evaluateResources(plan, data, values, fullContext, issues, failures, base);
-        List<GroupView> groups = evaluateGroups(plan, fullContext, quantities, sink, failures, base);
+        List<GroupView> groups = evaluateGroups(plan, quantities, sink, failures, base);
         Map<Identifier, Boolean> groupVisible = new LinkedHashMap<>();
         for (GroupView group : groups) {
             groupVisible.put(group.id(), group.visible());
         }
 
         Map<Identifier, List<Component>> optionIssues = new LinkedHashMap<>();
-        Map<Identifier, Boolean> optionVisible = new LinkedHashMap<>();
-        Map<Identifier, Boolean> optionEnabled = new LinkedHashMap<>();
-        Map<Identifier, Integer> optionMin = new LinkedHashMap<>();
-        Map<Identifier, Integer> optionMax = new LinkedHashMap<>();
-        evaluateOptions(plan, fullContext, quantities, sink, failures, base, groupVisible, optionIssues,
-                optionVisible, optionEnabled, optionMin, optionMax);
+        Map<Identifier, Boolean> optionVisible = new LinkedHashMap<>(), optionEnabled = new LinkedHashMap<>();
+        Map<Identifier, Integer> optionMin = new LinkedHashMap<>(), optionMax = new LinkedHashMap<>();
+        evaluateOptions(plan, quantities, sink, failures, base, groupVisible, optionIssues, optionVisible, optionEnabled, optionMin, optionMax);
         evaluateCompletionRules(plan.plan().completionRules(), sink, failures, base);
 
-        List<OutcomePlan> outcomes = evaluateOutcomes(plan, fullContext, quantities, sink, issues, failures, base);
-        Map<Identifier, List<Identifier>> optionAbilities = new LinkedHashMap<>();
-        Map<Identifier, List<String>> optionActions = new LinkedHashMap<>();
+        List<OutcomePlan> outcomes = evaluateOutcomes(plan, quantities, sink, base);
+        ListMultimap<Identifier, Identifier> optionAbilities = LinkedListMultimap.create();
+        ListMultimap<Identifier, String> optionActions = LinkedListMultimap.create();
         for (OutcomePlan outcome : outcomes) {
-            if (outcome.scope().equals("plan")) {
-                continue;
-            }
+            if (outcome.scope().equals("plan")) continue;
             Identifier optionId = Identifier.tryParse(outcome.scope());
-            if (optionId == null) {
-                continue;
-            }
-            optionAbilities.computeIfAbsent(optionId, key -> new ArrayList<>()).addAll(outcome.abilities());
-            optionActions.computeIfAbsent(optionId, key -> new ArrayList<>())
-                    .addAll(outcome.actions().stream().map(ActionPlan::key).toList());
+            if (optionId == null) continue;
+            optionAbilities.putAll(optionId, outcome.abilities());
+            optionActions.putAll(optionId, outcome.actions().stream().map(ActionPlan::key).toList());
         }
 
         boolean configClean = issues.stream().noneMatch(Issue::isError);
@@ -136,46 +128,36 @@ public final class SelectionEvaluator {
                     optionVisible.getOrDefault(option.id(), true), optionEnabled.getOrDefault(option.id(), true),
                     optionMin.getOrDefault(option.id(), 0), optionMax.getOrDefault(option.id(), option.definition().hardMax()),
                     List.copyOf(optionIssues.getOrDefault(option.id(), List.of())), List.copyOf(contributions),
-                    List.copyOf(optionAbilities.getOrDefault(option.id(), List.of())),
-                    List.copyOf(optionActions.getOrDefault(option.id(), List.of()))));
+                    List.copyOf(optionAbilities.get(option.id())),
+                    List.copyOf(optionActions.get(option.id()))));
         }
         Map<Identifier, OptionView> optionMap = new LinkedHashMap<>();
         optionViews.forEach(view -> optionMap.put(view.id(), view));
 
-        return new EvaluationResult(plan, Map.copyOf(fullVariables), List.copyOf(resources), List.copyOf(groups),
-                optionMap, List.copyOf(issues), List.copyOf(failures), List.copyOf(outcomes), canComplete);
+        return new EvaluationResult(plan, fullVariables, resources, groups, optionMap, issues, failures, outcomes, canComplete);
     }
 
-    private static Map<String, Double> buildBaseVariables(ResolvedPlan plan, SelectionData data,
-                                                          Map<Identifier, Integer> quantities,
-                                                          List<Issue> issues, String base) {
+    private static Map<String, Double> buildBaseVariables(ResolvedPlan plan, SelectionData data, Map<Identifier, Integer> quantities, List<Issue> issues, String base) {
         Map<String, Double> variables = new LinkedHashMap<>();
         data.inputs().forEach((key, value) -> {
-            if (value != null && Double.isFinite(value)) {
-                variables.put(DefinitionNames.inputVariable(key), value);
-            }
+            if (value != null && Double.isFinite(value)) variables.put(DefinitionNames.inputVariable(key), value);
         });
         for (ResourceBinding binding : plan.plan().resources()) {
             Double baseline = data.base().get(binding.resourceId());
             if (baseline == null || !Double.isFinite(baseline)) {
-                issues.add(Issue.error(base + "/resources/" + binding.key(),
-                        Component.translatable("spb.issue.missing_baseline", binding.resourceId().toString())));
+                issues.add(Issue.error(base + "/resources/" + binding.key(), Component.translatable("spb.issue.missing_baseline", binding.resourceId().toString())));
                 baseline = 0.0;
             }
             variables.put(DefinitionNames.baseVariable(binding.key()), baseline);
         }
-        for (ResolvedOption option : plan.orderedOptions()) {
-            variables.put(DefinitionNames.selectedVariable(option.key()),
-                    (double) quantities.getOrDefault(option.id(), 0));
-        }
+        for (ResolvedOption option : plan.orderedOptions())
+            variables.put(DefinitionNames.selectedVariable(option.key()), (double) quantities.getOrDefault(option.id(), 0));
         for (ResolvedGroup group : plan.groups()) {
             int distinct = 0;
             int total = 0;
             for (ResolvedOption option : group.options()) {
                 int quantity = quantities.getOrDefault(option.id(), 0);
-                if (quantity > 0) {
-                    distinct++;
-                }
+                if (quantity > 0) distinct++;
                 total += quantity;
             }
             variables.put(DefinitionNames.groupDistinctVariable(group.key()), (double) distinct);
@@ -184,9 +166,7 @@ public final class SelectionEvaluator {
         return variables;
     }
 
-    private static Map<Identifier, Map<Identifier, Double>> computeContributions(ResolvedPlan plan, FormulaContext context,
-                                                                                 Map<Identifier, Integer> quantities,
-                                                                                 List<Issue> issues, String base) {
+    private static Map<Identifier, Map<Identifier, Double>> computeContributions(ResolvedPlan plan, FormulaContext context, Map<Identifier, Integer> quantities, List<Issue> issues, String base) {
         Map<Identifier, Map<Identifier, Double>> perUnit = new LinkedHashMap<>();
         for (ResolvedOption option : plan.orderedOptions()) {
             boolean selected = quantities.getOrDefault(option.id(), 0) > 0;
@@ -204,9 +184,8 @@ public final class SelectionEvaluator {
                 }
                 // Prices of unselected options are display-only; only a selected option's broken
                 // contribution blocks the session.
-                if (!Double.isFinite(value) && selected) {
+                if (!Double.isFinite(value) && selected)
                     issues.add(Issue.error(path, Component.literal("number provider produced the non-finite value " + value)));
-                }
                 contributions.put(resource, value);
             });
             perUnit.put(option.id(), contributions);
@@ -214,39 +193,30 @@ public final class SelectionEvaluator {
         return perUnit;
     }
 
-    private static Map<Identifier, Double> computeResources(ResolvedPlan plan, SelectionData data,
-                                                            Map<Identifier, Map<Identifier, Double>> perUnit,
-                                                            Map<Identifier, Integer> quantities) {
+    private static Map<Identifier, Double> computeResources(ResolvedPlan plan, SelectionData data, Map<Identifier, Map<Identifier, Double>> perUnit, Map<Identifier, Integer> quantities) {
         Map<Identifier, Double> values = new LinkedHashMap<>();
         for (ResourceBinding binding : plan.plan().resources()) {
             double value = data.base().getOrDefault(binding.resourceId(), 0.0);
             for (ResolvedOption option : plan.orderedOptions()) {
                 int quantity = quantities.getOrDefault(option.id(), 0);
-                if (quantity > 0) {
+                if (quantity > 0)
                     value += perUnit.getOrDefault(option.id(), Map.of()).getOrDefault(binding.resourceId(), 0.0) * quantity;
-                }
             }
             values.put(binding.resourceId(), value);
         }
         return values;
     }
 
-    private static List<ResourceView> evaluateResources(ResolvedPlan plan, SelectionData data,
-                                                        Map<Identifier, Double> values, FormulaContext context,
-                                                        List<Issue> issues, List<RuleFailure> failures,
-                                                        String base) {
+    private static List<ResourceView> evaluateResources(ResolvedPlan plan, SelectionData data, Map<Identifier, Double> values, FormulaContext context, List<Issue> issues, List<RuleFailure> failures, String base) {
         List<ResourceView> views = new ArrayList<>();
         for (ResourceBinding binding : plan.plan().resources()) {
             Holder<Resource> holder = plan.resources().get(binding.key());
-            if (holder == null) {
-                continue;
-            }
+            if (holder == null) continue;
             double value = values.getOrDefault(binding.resourceId(), 0.0);
             double baseline = data.base().getOrDefault(binding.resourceId(), 0.0);
             double quantum = binding.quantum();
             String path = base + "/resources/" + binding.key();
-            double min;
-            double max;
+            double min, max;
             try {
                 FormulaContext resourceContext = context.withResource(holder);
                 min = holder.value().min().evaluate(resourceContext);
@@ -260,32 +230,23 @@ public final class SelectionEvaluator {
             boolean boundsOk = value >= min - tolerance && value <= max + tolerance;
             boolean quantumOk = aligned(value, quantum) && aligned(baseline, quantum);
             Component name = binding.displayName();
-            if (!boundsOk) {
-                failures.add(new RuleFailure(path,
-                        Component.translatable("spb.rule.resource_bounds", name, value, min, max)));
-            }
-            if (!quantumOk) {
-                failures.add(new RuleFailure(path,
-                        Component.translatable("spb.rule.resource_quantum", name, value, quantum)));
-            }
-            views.add(new ResourceView(binding.resourceId(), binding.key(), name, baseline, value,
-                    min, max, quantum, binding.display(), boundsOk, quantumOk));
+            if (!boundsOk)
+                failures.add(new RuleFailure(path, Component.translatable("spb.rule.resource_bounds", name, value, min, max)));
+            if (!quantumOk)
+                failures.add(new RuleFailure(path, Component.translatable("spb.rule.resource_quantum", name, value, quantum)));
+            views.add(new ResourceView(binding.resourceId(), binding.key(), name, baseline, value, min, max, quantum, binding.display(), boundsOk, quantumOk));
         }
         return views;
     }
 
-    private static List<GroupView> evaluateGroups(ResolvedPlan plan, FormulaContext context,
-                                                  Map<Identifier, Integer> quantities, EvaluationDiagnostics sink,
-                                                  List<RuleFailure> failures, String base) {
+    private static List<GroupView> evaluateGroups(ResolvedPlan plan, Map<Identifier, Integer> quantities, EvaluationDiagnostics sink, List<RuleFailure> failures, String base) {
         List<GroupView> views = new ArrayList<>();
         for (ResolvedGroup group : plan.groups()) {
             Group definition = group.definition();
             String path = base + "/groups/" + group.id();
             int capacity = capacity(group);
             int min = ceil(definition.minCount(), sink, path + "/min_count", 0);
-            int max = definition.maxCount().isPresent()
-                    ? floor(definition.maxCount().get(), sink, path + "/max_count", capacity)
-                    : capacity;
+            int max = definition.maxCount().isPresent() ? floor(definition.maxCount().get(), sink, path + "/max_count", capacity) : capacity;
             if (max > capacity) {
                 max = capacity;
             }
@@ -296,28 +257,20 @@ public final class SelectionEvaluator {
                 sink.error("invalid group range: min=" + min + ", max=" + max);
                 groupIssues.add(Component.translatable("spb.issue.group_range", min, max));
             } else {
-                if (count < min) {
+                if (count < min)
                     groupIssues.add(Component.translatable("spb.group.too_few", definition.title(), min, count));
-                }
-                if (count > max) {
+                if (count > max)
                     groupIssues.add(Component.translatable("spb.group.too_many", definition.title(), max, count));
-                }
             }
             boolean visible = test(definition.visibleCondition(), sink, path + "/visible_condition");
-            for (Component component : groupIssues) {
+            for (Component component : groupIssues)
                 failures.add(new RuleFailure(path, component));
-            }
             views.add(new GroupView(group.id(), definition, count, min, max, visible, List.copyOf(groupIssues)));
         }
         return views;
     }
 
-    private static void evaluateOptions(ResolvedPlan plan, FormulaContext context, Map<Identifier, Integer> quantities,
-                                        EvaluationDiagnostics sink, List<RuleFailure> failures, String base,
-                                        Map<Identifier, Boolean> groupVisible,
-                                        Map<Identifier, List<Component>> optionIssues,
-                                        Map<Identifier, Boolean> optionVisible, Map<Identifier, Boolean> optionEnabled,
-                                        Map<Identifier, Integer> optionMin, Map<Identifier, Integer> optionMax) {
+    private static void evaluateOptions(ResolvedPlan plan, Map<Identifier, Integer> quantities, EvaluationDiagnostics sink, List<RuleFailure> failures, String base, Map<Identifier, Boolean> groupVisible, Map<Identifier, List<Component>> optionIssues, Map<Identifier, Boolean> optionVisible, Map<Identifier, Boolean> optionEnabled, Map<Identifier, Integer> optionMin, Map<Identifier, Integer> optionMax) {
         for (ResolvedOption option : plan.orderedOptions()) {
             String path = base + "/options/" + option.id();
             int quantity = quantities.getOrDefault(option.id(), 0);
@@ -338,27 +291,19 @@ public final class SelectionEvaluator {
 
             List<Component> found = new ArrayList<>();
             if (quantity > 0) {
-                if (quantity < min) {
+                if (quantity < min)
                     found.add(Component.translatable("spb.option.too_few", option.definition().name(), min, quantity));
-                }
-                if (quantity > effectiveMax) {
+                if (quantity > effectiveMax)
                     found.add(Component.translatable("spb.option.too_many", option.definition().name(), effectiveMax, quantity));
-                }
-                if (!visible) {
+                if (!visible)
                     found.add(Component.translatable("spb.option.selected_hidden", option.definition().name()));
-                }
-                if (!enabled) {
+                if (!enabled)
                     found.add(Component.translatable("spb.option.selected_disabled", option.definition().name()));
-                }
-                for (ValidationRule rule : option.definition().validationRules()) {
-                    if (!test(rule.condition(), sink, path + "/validation_rules/" + rule.key())) {
+                for (ValidationRule rule : option.definition().validationRules())
+                    if (!test(rule.condition(), sink, path + "/validation_rules/" + rule.key()))
                         found.add(rule.display());
-                    }
-                }
             }
-            for (Component component : found) {
-                failures.add(new RuleFailure(path, component));
-            }
+            for (Component component : found) failures.add(new RuleFailure(path, component));
             optionIssues.put(option.id(), List.copyOf(found));
             optionVisible.put(option.id(), visible);
             optionEnabled.put(option.id(), enabled);
@@ -367,50 +312,35 @@ public final class SelectionEvaluator {
         }
     }
 
-    private static void evaluateCompletionRules(List<CompletionRule> rules, EvaluationDiagnostics sink,
-                                                List<RuleFailure> failures, String base) {
+    private static void evaluateCompletionRules(List<CompletionRule> rules, EvaluationDiagnostics sink, List<RuleFailure> failures, String base) {
         for (CompletionRule rule : rules) {
             String path = base + "/completion_rules/" + rule.key();
-            if (!test(rule.condition(), sink, path)) {
+            if (!test(rule.condition(), sink, path))
                 failures.add(new RuleFailure(path, rule.display()));
-            }
         }
     }
 
-    private static List<OutcomePlan> evaluateOutcomes(ResolvedPlan plan, FormulaContext context,
-                                                      Map<Identifier, Integer> quantities, EvaluationDiagnostics sink,
-                                                      List<Issue> issues, List<RuleFailure> failures,
-                                                      String base) {
+    private static List<OutcomePlan> evaluateOutcomes(ResolvedPlan plan, Map<Identifier, Integer> quantities, EvaluationDiagnostics sink, String base) {
         List<OutcomePlan> result = new ArrayList<>();
         int[] taskBudget = {MAX_TASKS};
-        for (Outcome outcome : plan.plan().outcomes()) {
-            evaluateOutcome("plan", base + "/outcomes/" + outcome.key(), outcome, sink, issues, result, taskBudget);
-        }
+        for (Outcome outcome : plan.plan().outcomes())
+            evaluateOutcome("plan", base + "/outcomes/" + outcome.key(), outcome, sink, result, taskBudget);
         for (ResolvedOption option : plan.orderedOptions()) {
-            if (quantities.getOrDefault(option.id(), 0) <= 0) {
-                continue;
-            }
-            for (Outcome outcome : option.definition().outcomes()) {
-                evaluateOutcome(option.id().toString(), base + "/options/" + option.id() + "/outcomes/" + outcome.key(),
-                        outcome, sink, issues, result, taskBudget);
-            }
+            if (quantities.getOrDefault(option.id(), 0) <= 0) continue;
+            for (Outcome outcome : option.definition().outcomes())
+                evaluateOutcome(option.id().toString(), base + "/options/" + option.id() + "/outcomes/" + outcome.key(), outcome, sink, result, taskBudget);
         }
         return result;
     }
 
-    private static void evaluateOutcome(String scope, String path, Outcome outcome, EvaluationDiagnostics sink, List<Issue> issues,
-                                        List<OutcomePlan> result, int[] taskBudget) {
+    private static void evaluateOutcome(String scope, String path, Outcome outcome, EvaluationDiagnostics sink, List<OutcomePlan> result, int[] taskBudget) {
         boolean active = outcome.condition().map(condition -> test(condition, sink, path + "/condition")).orElse(true);
-        if (!active) {
-            return;
-        }
+        if (!active) return;
         List<ActionPlan> actions = new ArrayList<>();
         for (OutcomeAction action : outcome.actions()) {
             String actionPath = path + "/actions/" + action.key();
             int delay = ceil(action.delay(), sink, actionPath + "/delay", 1);
-            if (delay < 1) {
-                delay = 1;
-            }
+            if (delay < 1) delay = 1;
             if (delay > MAX_DELAY) {
                 sink.enter(actionPath + "/delay");
                 sink.error("delay exceeds the limit of " + MAX_DELAY + " ticks");
@@ -438,13 +368,9 @@ public final class SelectionEvaluator {
                 .map(holder -> holder.unwrapKey().orElseThrow().identifier()).toList(), List.copyOf(actions)));
     }
 
-    private static FormulaContext context(Player player, HolderLookup.Provider access,
-                                          Map<String, Double> variables) {
-        if (player != null) {
-            return FormulaContext.of(player, variables);
-        }
-        return new FormulaContext(new LinkedHashMap<>(variables), RandomSource.create(),
-                access, null, null, null, null, false);
+    private static FormulaContext context(Player player, HolderLookup.Provider access, Map<String, Double> variables) {
+        if (player != null) return FormulaContext.of(player, variables);
+        return new FormulaContext(new LinkedHashMap<>(variables), RandomSource.create(), access, null, null, null, null, false);
     }
 
     private static boolean test(EntityCondition condition, EvaluationDiagnostics sink, String path) {
@@ -482,9 +408,8 @@ public final class SelectionEvaluator {
     private static int capacity(ResolvedGroup group) {
         if (group.definition().countMode() == CountMode.TOTAL) {
             int capacity = 0;
-            for (ResolvedOption option : group.options()) {
+            for (ResolvedOption option : group.options())
                 capacity += option.definition().hardMax();
-            }
             return capacity;
         }
         return group.options().size();
@@ -494,17 +419,13 @@ public final class SelectionEvaluator {
         int count = 0;
         for (ResolvedOption option : group.options()) {
             int quantity = quantities.getOrDefault(option.id(), 0);
-            count += group.definition().countMode() == CountMode.TOTAL
-                    ? Math.max(0, quantity)
-                    : quantity > 0 ? 1 : 0;
+            count += group.definition().countMode() == CountMode.TOTAL ? Math.max(0, quantity) : quantity > 0 ? 1 : 0;
         }
         return count;
     }
 
     private static boolean aligned(double value, double quantum) {
-        if (!Double.isFinite(value) || !Double.isFinite(quantum) || quantum <= 0.0) {
-            return false;
-        }
+        if (!Double.isFinite(value) || !Double.isFinite(quantum) || quantum <= 0.0) return false;
         double units = value / quantum;
         return Math.abs(units - Math.rint(units)) <= EPSILON;
     }

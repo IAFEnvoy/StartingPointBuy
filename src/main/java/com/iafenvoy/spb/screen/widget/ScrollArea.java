@@ -50,8 +50,8 @@ public final class ScrollArea {
     }
 
     public boolean startDrag(double mouseX, double mouseY) {
-        if (this.maxScroll <= 0 || !this.bounds.contains(mouseX, mouseY)
-                || mouseX < this.bounds.right() - BAR_WIDTH) return false;
+        if (this.maxScroll <= 0 || !this.bounds.contains(mouseX, mouseY) || mouseX < this.bounds.right() - BAR_WIDTH)
+            return false;
         this.dragging = true;
         this.dragY = mouseY;
         this.dragOffset = this.offset;

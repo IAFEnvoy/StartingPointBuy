@@ -3,6 +3,8 @@
 Build your starting character before the adventure begins. Spend a limited pool of points on professions, talents and
 attributes, or take drawbacks to gain more room for other choices.
 
+![](https://raw.githubusercontent.com/IAFEnvoy/StartingPointBuy/refs/heads/master/img/1.webp)
+
 **The main mod does not include professions, talents or starting plans.** Follow your modpack's installation
 instructions, or add a compatible data pack when installing it yourself. Without a plan, no selection screen opens
 automatically.

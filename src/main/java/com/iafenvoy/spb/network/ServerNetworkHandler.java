@@ -25,7 +25,7 @@ public final class ServerNetworkHandler {
             return;
         }
         long now = player.level().getGameTime();
-        long[] budget = BUDGET.computeIfAbsent(player.getUUID(), key -> new long[]{-1L, 0L});
+        long[] budget = BUDGET.computeIfAbsent(player.getUUID(), _ -> new long[]{-1L, 0L});
         if (budget[0] != now) {
             budget[0] = now;
             budget[1] = 0;
