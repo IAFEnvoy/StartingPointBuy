@@ -957,6 +957,8 @@ Plan 已移除数据格式版本字段。`title` 为可选 Component，直接用
 
 `PlanScreen` 只协调生命周期、关闭规则和事件路由；预设、选项和页脚分别由 `PresetPanel`、`OptionPanel`、`PlanFooter` 管理。`PlanRequests` 统一快照、等待超时、提交/预设/数量请求和预览回包匹配；`ScreenDrawing` 复用原版精灵，`ScreenText` 负责价格、资源和 Tooltip 文本。以上均为独立顶层类，区域通过组合工作。
 
+主面板和窄屏预设弹层使用独立的 `assets/spb/textures/gui/sprites/panel/stone.png` 石质背景贴图。边框和石纹保存在同一张 PNG 中，配套 `.png.mcmeta` 使用九宫格：四像素边框固定，中央 64×64 石纹按原尺寸平铺，不拉伸纹理。运行时只绘制精灵，资源包可覆盖这两个文件来更换背景。
+
 `PlanScreenLayout` 集中固定区域坐标，`OptionGrid` 按组索引选项后生成含矩形边界的 `LayoutEntry`，替换平行坐标数组；绘制、命中和键盘导航共用同一份几何数据。`ScrollArea` 统一两栏滚动、拖动、限位与焦点滚入；快照更新和窗口调整保留首个可见选项的锚点。资源换行只在布局更新时计算，渲染和 Tooltip 命中复用结果。
 
 同时修复预设列表滚动后标题误触行、滚动条在视口外误命中，以及无关预览回包覆盖当前悬停预览的问题。预设标题独立裁剪；离开控件、编辑、滚动或更新快照会清除旧预览。

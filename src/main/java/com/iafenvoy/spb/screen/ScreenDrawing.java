@@ -1,6 +1,7 @@
 package com.iafenvoy.spb.screen;
 
 import com.iafenvoy.saturn.data.IconReference;
+import com.iafenvoy.spb.StartingPointBuy;
 import com.iafenvoy.spb.screen.layout.ScreenRectangle;
 import com.iafenvoy.spb.screen.widget.ScrollArea;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -11,7 +12,7 @@ import net.minecraft.resources.Identifier;
 import java.util.Optional;
 
 /**
- * Vanilla sprites and drawing primitives used consistently by every screen region.
+ * Texture-backed panels, vanilla widgets and drawing primitives shared by every screen region.
  */
 final class ScreenDrawing {
     static final int HEADER = 0xFFFFFFFF;
@@ -22,7 +23,8 @@ final class ScreenDrawing {
     static final int ERROR = 0xFFFF5555;
     static final int OK = 0xFF55FF55;
     static final int SEPARATOR = 0x30FFFFFF;
-    private static final Identifier PANEL = sprite("popup/background");
+    // The sprite metadata preserves the frame and tiles the stone interior at its native scale.
+    private static final Identifier PANEL = Identifier.fromNamespaceAndPath(StartingPointBuy.MOD_ID, "panel/stone");
     private static final Identifier BUTTON = sprite("widget/button");
     private static final Identifier HIGHLIGHTED = sprite("widget/button_highlighted");
     private static final Identifier BUTTON_DISABLED = sprite("widget/button_disabled");
